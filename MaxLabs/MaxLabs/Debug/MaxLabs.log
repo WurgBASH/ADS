@@ -1,1 +1,2 @@
-﻿LINK : fatal error LNK1168: не удается открыть C:\Users\User\Desktop\ХКТК\СОЦСЕТи\ADS-master\ADS\MaxLabs\Debug\MaxLabs.exe для записи
+﻿  Source.cpp
+LINK : fatal error LNK1168: не удается открыть C:\Users\User\Desktop\ХКТК\СОЦСЕТи\ADS-master\ADS\MaxLabs\Debug\MaxLabs.exe для записи

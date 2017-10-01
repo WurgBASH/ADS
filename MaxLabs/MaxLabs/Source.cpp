@@ -32,9 +32,34 @@ public:
 		(*temp).Next = Head;
 		Head = temp;
 	}
+	void DeleteNext(int del) {
+		if (Head->Next != NULL) {
+			element *temp = Head;
+			for (int i = 0; i <= del - 1; i++) {
+				temp = (*temp).Next;
+			}
+			(*Head).Next = (*temp).Next;
+			delete temp;
+		}
+		else {
+			cout << "ERROR. Куда дальше то?" << endl;
+		}
+		/*
+		element *temp = Head;
+		for (int i = 0; i <= del; i++) {
+			temp = (*temp).Next;
+		}
+		if ((*temp).Next != NULL) {
+			Head->Next = temp->Next;
+		}
+		else {
+			Head->Next->Next = NULL;
+		}
+		delete temp;*/
+	}
 	void Delete() {
-		if ((*Head).Next == NULL) {
-			delete Head;
+		if (Head == NULL) {
+			
 		}
 		else {
 			element *temp = (*Head).Next;
@@ -67,58 +92,72 @@ public:
 void main()
 {
 	setlocale(LC_ALL, "Rus");
-	int size,answer = 0;
+	int size,answer = 0,del_num, cnt =0;
 	AutoProp prop;
 	cout << "Введите сколько вы хотите машин: ";
 	cin >> size;
+	cnt = size;
 	List *Auto = new List[size];
-	while(answer != 6)
+	while(answer != 5)
 	{
 		system("cls");
-		cout << "1: Запись списка; " << endl;
-		cout << "2: Добавление одного элемента; " << endl;
-		cout << "3: Удаление первого элемента; " << endl;
-		cout << "4: Удаление объекта, после указанного; " << endl;
-		cout << "5: Вывод всего списка; " << endl;
-		cout << "6: Выход. " << endl;
+		cout << "1: Добавление одного элемента; " << endl;
+		cout << "2: Удаление первого элемента; " << endl;
+		cout << "3: Удаление объекта, после указанного; " << endl;
+		cout << "4: Вывод всего списка; " << endl;
+		cout << "5: Выход. " << endl;
 		cin >> answer;
-		if (answer > 0 && answer <= 6) 
+		if (answer > 0 && answer <= 5) 
 		{
 			switch (answer)
 			{
 			case 1:
-				system("cls");
-				for (int i = 0; i < size; i++)
-				{
-					cout << "Введите марку автомобиля под номером " << i+1 << ": ";
+				if (cnt > 0) {
+					system("cls");
+					cout << "Введите марку автомобиля: ";
 					gets_s(prop.Brand);
 					gets_s(prop.Brand);
 					cout << "Введите модель: ";
 					gets_s(prop.Model);
 					cout << "Введите тип кузова: ";
 					gets_s(prop.Bodystyle);
-					Auto[i].Add(prop);
+					Auto[0].Add(prop);
 					system("cls");
+					cnt--;
+				}
+				else {
+					system("cls");
+					cout << "ERROR: Надо было написать больше!" << endl;
+					system("pause"); system("cls");
 				}
 				break;
 			case 2:
-				system("cls");
-				cout << "Введите марку автомобиля: ";
-				gets_s(prop.Brand);
-				gets_s(prop.Brand);
-				cout << "Введите модель: ";
-				gets_s(prop.Model);
-				cout << "Введите тип кузова: ";
-				gets_s(prop.Bodystyle);
-				Auto[0].Add(prop);
+				Auto[0].Delete();
+				cnt++;
 				system("cls");
 				break;
 			case 3:
-				Auto[0].Delete();
+				system("cls");
+				cout.setf(ios::left);
+				cout << setw(10) << "Марка" << setw(10) << "Модель" << setw(10) << "Тип Кузова" << endl;
+				for (int i = 0; i < size; i++)
+				{
+					Auto[i].Show();
+				}
+				cout << endl << "Введите номер элемента: ";
+				cin >> del_num;
+				if (del_num < size && del_num > 0) {
+					//del_num--;
+					Auto->DeleteNext(del_num);
+					cnt++;
+				}
+				else {
+					system("cls");
+					cout << "ERROR: Не умеешь ты считать!" << endl;
+					system("pause"); system("cls");
+				}
 				break;
 			case 4:
-				break;
-			case 5:
 				system("cls");
 				cout.setf(ios::left);
 				cout << setw(10) << "Марка" << setw(10) << "Модель" << setw(10) << "Тип Кузова" << endl;
@@ -128,13 +167,12 @@ void main()
 				}
 				system("pause");
 				break;
+			case 5:
+				break;
 			default:
+				cout << "ERROR: Вы ввели не правильное значение" << endl;
 				break;
 			}
-		}
-		else {
-			cout << "Вы ввели не правильное значение";
-			system("pause");
 		}
 	}
 	cout << endl;
