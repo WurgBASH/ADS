@@ -32,6 +32,16 @@ public:
 		(*temp).Next = Head;
 		Head = temp;
 	}
+	void Delete() {
+		if ((*Head).Next == NULL) {
+			delete Head;
+		}
+		else {
+			element *temp = (*Head).Next;
+			delete Head;
+			Head = temp;
+		}
+	}
 	void Show()
 	{
 		element *temp = Head;
@@ -62,16 +72,17 @@ void main()
 	cout << "Введите сколько вы хотите машин: ";
 	cin >> size;
 	List *Auto = new List[size];
-	while(answer != 5)
+	while(answer != 6)
 	{
 		system("cls");
 		cout << "1: Запись списка; " << endl;
-		cout << "2: Удаление первого элемента; " << endl;
-		cout << "3: Вывод всего списка; " << endl;
+		cout << "2: Добавление одного элемента; " << endl;
+		cout << "3: Удаление первого элемента; " << endl;
 		cout << "4: Удаление объекта, после указанного; " << endl;
-		cout << "5: Выход. " << endl;
+		cout << "5: Вывод всего списка; " << endl;
+		cout << "6: Выход. " << endl;
 		cin >> answer;
-		if (answer > 0 && answer <= 5) 
+		if (answer > 0 && answer <= 6) 
 		{
 			switch (answer)
 			{
@@ -91,8 +102,23 @@ void main()
 				}
 				break;
 			case 2:
+				system("cls");
+				cout << "Введите марку автомобиля: ";
+				gets_s(prop.Brand);
+				gets_s(prop.Brand);
+				cout << "Введите модель: ";
+				gets_s(prop.Model);
+				cout << "Введите тип кузова: ";
+				gets_s(prop.Bodystyle);
+				Auto[0].Add(prop);
+				system("cls");
 				break;
 			case 3:
+				Auto[0].Delete();
+				break;
+			case 4:
+				break;
+			case 5:
 				system("cls");
 				cout.setf(ios::left);
 				cout << setw(10) << "Марка" << setw(10) << "Модель" << setw(10) << "Тип Кузова" << endl;
@@ -101,8 +127,6 @@ void main()
 					Auto[i].Show();
 				}
 				system("pause");
-				break;
-			case 4:
 				break;
 			default:
 				break;

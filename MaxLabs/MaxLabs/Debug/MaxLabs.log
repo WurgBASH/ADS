@@ -1,3 +1,1 @@
-﻿  Source.cpp
-  MaxLabs.vcxproj -> C:\Users\User\Desktop\ХКТК\СОЦСЕТи\ADS-master\ADS\MaxLabs\Debug\MaxLabs.exe
-  MaxLabs.vcxproj -> C:\Users\User\Desktop\ХКТК\СОЦСЕТи\ADS-master\ADS\MaxLabs\Debug\MaxLabs.pdb (Partial PDB)
+﻿LINK : fatal error LNK1168: не удается открыть C:\Users\User\Desktop\ХКТК\СОЦСЕТи\ADS-master\ADS\MaxLabs\Debug\MaxLabs.exe для записи
