@@ -25,6 +25,9 @@ public:
 	{ 
 		Head = NULL; 
 	} 
+	bool Check() {
+		if (Head != NULL) return true; else return false;
+	}
 	void Add(AutoProp prop)
 	{
 		element *temp = new element;
@@ -38,24 +41,16 @@ public:
 			for (int i = 0; i <= del - 1; i++) {
 				temp = (*temp).Next;
 			}
+			for (int i = 0; i <= del - 2; i++) {
+				temp = (*Head).Next;
+			}
 			(*Head).Next = (*temp).Next;
 			delete temp;
 		}
 		else {
 			cout << "ERROR. Куда дальше то?" << endl;
+			system("pause");
 		}
-		/*
-		element *temp = Head;
-		for (int i = 0; i <= del; i++) {
-			temp = (*temp).Next;
-		}
-		if ((*temp).Next != NULL) {
-			Head->Next = temp->Next;
-		}
-		else {
-			Head->Next->Next = NULL;
-		}
-		delete temp;*/
 	}
 	void Delete() {
 		if (Head == NULL) {
@@ -94,8 +89,11 @@ void main()
 	setlocale(LC_ALL, "Rus");
 	int size,answer = 0,del_num, cnt =0;
 	AutoProp prop;
-	cout << "Введите сколько вы хотите машин: ";
-	cin >> size;
+	do {
+		system("cls");
+		cout << "Введите сколько вы хотите машин: ";
+		cin >> size;
+	} while (size <= 0);
 	cnt = size;
 	List *Auto = new List[size];
 	while(answer != 5)
@@ -147,7 +145,6 @@ void main()
 				cout << endl << "Введите номер элемента: ";
 				cin >> del_num;
 				if (del_num < size && del_num > 0) {
-					//del_num--;
 					Auto->DeleteNext(del_num);
 					cnt++;
 				}
@@ -159,13 +156,19 @@ void main()
 				break;
 			case 4:
 				system("cls");
-				cout.setf(ios::left);
-				cout << setw(10) << "Марка" << setw(10) << "Модель" << setw(10) << "Тип Кузова" << endl;
-				for (int i = 0; i < size; i++)
-				{
-					Auto[i].Show();
+				if (Auto->Check()) {
+					cout.setf(ios::left);
+					cout << setw(10) << "Марка" << setw(10) << "Модель" << setw(10) << "Тип Кузова" << endl;
+					for (int i = 0; i < size; i++)
+					{
+						Auto[i].Show();
+					}
 				}
-				system("pause");
+				else {
+					cout << "Список пуст" << endl;
+				}
+					system("pause");
+				
 				break;
 			case 5:
 				break;
@@ -173,6 +176,7 @@ void main()
 				cout << "ERROR: Вы ввели не правильное значение" << endl;
 				break;
 			}
+
 		}
 	}
 	cout << endl;
